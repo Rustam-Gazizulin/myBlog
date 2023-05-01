@@ -21,7 +21,7 @@ def post_share(request, post_id):
             subject = f"{cd['name']} предлагает прочитать пост {post.title}"
             message = f"Крутой пост {post.title} вот ссылка {post_url}\n\n" \
                       f"{cd['name']}\'s comments: {cd['comments']}"
-            send_mail(subject, message, 'rgazizulin174@gmail.com', [cd['to']])
+            send_mail(subject, message, 'ivan1987ivanov174@gmail.com', [cd['to']])
             sent = True
     else:
         form = EmailPostForm()
