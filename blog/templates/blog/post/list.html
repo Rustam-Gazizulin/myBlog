@@ -1,9 +1,10 @@
 {% extends "blog/base.html" %}
+{% load blog_tags %}
 
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
-  <h1>My Blog</h1>
+  <h1>Мой БЛОГ:)</h1>
    {% if tag %}
         <h2>Посты с тегом "{{ tag.name }}"</h2>
     {% endif %}
@@ -25,7 +26,7 @@
     <p class="date">
       Published {{ post.publish }} by {{ post.author }}
     </p>
-    {{ post.body|truncatewords:10|linebreaks }}
+    {{ post.body|markdown|truncatewords_html:30 }}
   {% endfor %}
   {% include "pagination.html" with page=posts %}
 {% endblock %}
