@@ -114,8 +114,16 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            # search_vector = SearchVector('title', 'body')
+
+            # Векторный поиск через взвешивание запросов приоритет вхождению в заголовок
+            # search_vector = SearchVector('title', weight='A') + SearchVector('body', weight='B')
             # search_query = SearchQuery(query)
+            # results = Post.published.annotate(
+            #     search=search_vector,
+            #     rank=SearchRank(search_vector, search_query)
+            # ).filter(rank__gte=0.3).order_by('-rank')
+
+            # Поиск интеллектуальный ищет слова с ошибками
             results = Post.published.annotate(
                 similarity=TrigramSimilarity('title', query),
             ).filter(similarity__gt=0.1).order_by('-similarity')
@@ -125,4 +133,3 @@ def post_search(request):
                   {'form': form,
                    'query': query,
                    'results': results})
-
