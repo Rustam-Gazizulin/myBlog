@@ -28,5 +28,6 @@
     </p>
     {{ post.body|markdown|truncatewords_html:30 }}
   {% endfor %}
+    <p><a href="{% url "blog:post_search" %}"> >>> Поиск по ключевым словам <<< </a></p>
   {% include "pagination.html" with page=posts %}
 {% endblock %}

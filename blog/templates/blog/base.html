@@ -23,8 +23,8 @@
     </p>
       <h3>3 Последних опубликованных поста.</h3>
       {% show_latest_posts 3 %}
-      <h3>3 Самых комментируемых поста</h3>
-      {% get_most_commented_posts 3 as most_commented_posts %}
+      <h3>5 Самых комментируемых постов</h3>
+      {% get_most_commented_posts 5 as most_commented_posts %}
       <ul>
           {% for post in most_commented_posts %}
           <li>

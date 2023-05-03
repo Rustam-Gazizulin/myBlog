@@ -23,7 +23,7 @@ def show_latest_posts(count=5):
 def get_most_commented_posts(count=5):
     return Post.published.annotate(
         total_comments=Count('comments')
-    ).order_by('total_comments')[:count]
+    ).order_by('-total_comments')[:count]
 
 
 @register.filter(name='markdown')
