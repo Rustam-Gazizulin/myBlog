@@ -92,11 +92,11 @@ WSGI_APPLICATION = "myBlog.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "blog",
-        "USER": "blog",
-        "PASSWORD": "redzone174",
-        "PORT": "5432",
-        "HOST": "localhost",
+        "NAME": env.str("POSTGRES_DB"),
+        "USER": env.str("POSTGRES_USER"),
+        "PASSWORD": env.str("POSTGRES_PASSWORD"),
+        "HOST": env.str("POSTGRES_HOST"),
+        "PORT": env.str("POSTGRES_PORT"),
     }
 }
 

@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  api:
+    image: rgazizulin/my_blog:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    restart: always
+    environment:
+      DEBUG: ${DEBUG}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      SECRET_KEY: ${SECRET_KEY}
+
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+  migrations:
+    image: rgazizulin/my_blog:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    environment:
+      DEBUG: ${DEBUG}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python3 manage.py migrate"
+      
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  pg_data:
