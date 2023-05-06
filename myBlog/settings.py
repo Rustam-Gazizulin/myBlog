@@ -12,18 +12,26 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+env = environ.Env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+ENV_FILE_PATH = BASE_DIR.joinpath('.env')
+
+environ.Env.read_env(ENV_FILE_PATH)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-7zz=thp*e))8973z+!r6$m^w9yyo8il+c5c$s2esk6h0we#gs*"
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -136,8 +144,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Конфигурация сервера электронной почты
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'rgazizulin174@gmail.com'
-EMAIL_HOST_PASSWORD = 'udxmzwicgxpofqms'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
