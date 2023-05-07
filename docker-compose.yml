@@ -14,7 +14,7 @@ services:
       migrations:
         condition: service_completed_successfully
     ports:
-      - "8000:8000"
+      - 80:80
 
   migrations:
     build: .
