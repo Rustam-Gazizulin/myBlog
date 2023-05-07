@@ -30,7 +30,7 @@ jobs:
       - name: render configs
         run: |
           mkdir blog
-          cat docker-compose-ci.yml | envsubst > deploy/docker-compose.yml
+          cat docker-compose-ci.yml | envsubst > blog/docker-compose.yml
       - name: copy files to server
         uses: appleboy/scp-action@master
         with:
