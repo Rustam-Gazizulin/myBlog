@@ -4,8 +4,7 @@ services:
   api:
     build:
       context: .
-    image: rgazizulin/my_blog
-      #dockerfile: Dockerfile
+      dockerfile: Dockerfile
     restart: always
     env_file:
       - .env
@@ -19,7 +18,6 @@ services:
 
   migrations:
     build: .
-    image: rgazizulin/my_blog
     depends_on:
       db:
         condition: service_healthy
