@@ -11,7 +11,7 @@ jobs:
       - name: docker login
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: docker push
-        run: docker push rgazizulin/skypro_todolist_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+        run: docker push rgazizulin/my_blog:$GITHUB_REF_NAME-$GITHUB_RUN_ID
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push
