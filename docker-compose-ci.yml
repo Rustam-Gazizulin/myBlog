@@ -24,7 +24,7 @@ services:
       migrations:
         condition: service_completed_successfully
     ports:
-      - 80:80
+      - 8000:8000
   migrations:
     image: rgazizulin/my_blog:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     environment:
