@@ -37,7 +37,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "deploy/docker-compose.yml"
+          source: "blog/docker-compose.yml"
           target: "my_blog"
           strip_components: 1
       - name: deploy app
