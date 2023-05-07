@@ -24,7 +24,7 @@ services:
       migrations:
         condition: service_completed_successfully
     ports:
-      - 8000:8000
+      - '8000:8000'
   migrations:
     image: rgazizulin/my_blog:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     environment:
@@ -35,11 +35,11 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       SECRET_KEY: ${SECRET_KEY}
       POSTGRES_PORT: ${POSTGRES_PORT}
-#      EMAIL_HOST: ${EMAIL_HOST}
-#      EMAIL_HOST_USER: ${EMAIL_HOST_USER}
-#      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
-#      EMAIL_PORT: ${EMAIL_PORT}
-#      EMAIL_USE_TLS: ${EMAIL_USE_TLS}
+      EMAIL_HOST: ${EMAIL_HOST}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
+      EMAIL_PORT: ${EMAIL_PORT}
+      EMAIL_USE_TLS: ${EMAIL_USE_TLS}
 
     depends_on:
       db:
