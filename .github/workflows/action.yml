@@ -23,11 +23,11 @@ jobs:
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-#      EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
-#      EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
-#      EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
-#      EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
-#      EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+      EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+      EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+      EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+      EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+      EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
 
     steps:
       - name: clone code
